@@ -12,8 +12,6 @@ describe("Mint token", function () {
         await collection.deployed();
     });
 
-
-
     it("mint", async function () {
         const mintTx = await collection.mint(1);
     });
