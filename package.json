@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/YASHTHAKOR/solidity-contracts-eth-inida/issues"
   },
-  "homepage": "https://github.com/YASHTHAKOR/solidity-contracts-eth-inida#readme"
+  "homepage": "https://github.com/YASHTHAKOR/solidity-contracts-eth-inida#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0"
+  }
 }
