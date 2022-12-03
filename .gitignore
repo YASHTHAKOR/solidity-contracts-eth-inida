@@ -1,6 +1,9 @@
 # Logs
 .idea
 package-lock.json
+artifacts
+cache
+typechain-types
 logs
 *.log
 npm-debug.log*
