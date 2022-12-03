@@ -14,4 +14,9 @@ describe("Mint token", function () {
     it("mint", async function () {
         const mintTx = await collection.mint(1);
     });
+
+    it("update base uri", async function () {
+        const mintTx = await collection.setBaseURI("test.com");
+
+    });
 });

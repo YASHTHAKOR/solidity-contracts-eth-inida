@@ -10,6 +10,7 @@ contract Collection is ERC721 {
     address public Owner;
     address public Parent;
     bool public minted;
+    string public baseURI;
 
     event Mint(uint256 tokenId);
 
@@ -25,14 +26,14 @@ contract Collection is ERC721 {
         _;
     }
 
-    constructor (string memory _name,string memory _symbol,uint256 _m, uint256 _n, address _owner, address _parent)  ERC721(_name, _symbol){
+    constructor (string memory _name, string memory _symbol, uint256 _m, uint256 _n, address _owner, address _parent)  ERC721(_name, _symbol){
         M = _m;
         N = _n;
         Owner = _owner;
         Parent = _parent;
     }
 
-    function mint(uint256 tokenId ) external onlyOwner isNotLocked  {
+    function mint(uint256 tokenId) external onlyOwner isNotLocked {
         require(M * N > tokenId, "Invalid token");
         require(!mintedIds[tokenId], "already minted");
         _mint(msg.sender, tokenId);
@@ -40,8 +41,13 @@ contract Collection is ERC721 {
         emit Mint(tokenId);
     }
 
-    function complete() external onlyOwner isNotLocked{
-         minted = true;
+    function complete() external onlyOwner isNotLocked {
+        minted = true;
+    }
+
+    function setBaseURI(string memory _baseURI) external onlyOwner {
+        require(bytes(baseURI).length == 0, "uri already set");
+        baseURI = _baseURI;
     }
 
 }

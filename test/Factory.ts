@@ -36,7 +36,7 @@ describe('Collection Factory', function () {
         const forkedCollection = await cf.connect(address1).forkCollection('Collection2', 'COL-2', collections[0])
             .catch(e => e);
 
-        expect((forkedCollection.error?.data?.stack || '').includes('Not allowed')).to.be.eq(true, 'can not fork if not minted condition failed');
+        expect((JSON.stringify(forkedCollection) || '').includes('Not allowed')).to.be.eq(true, 'can not fork if not minted condition failed');
     });
 
     it('can clone collection', async () => {
