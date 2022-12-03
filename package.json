@@ -1,0 +1,24 @@
+{
+  "name": "hackathon-eth-india",
+  "version": "1.0.0",
+  "description": "solidity contracts eth-india",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YASHTHAKOR/solidity-contracts-eth-inida.git"
+  },
+  "keywords": [
+    "solidity",
+    "contracts",
+    "nft"
+  ],
+  "author": "YASH THAKOR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YASHTHAKOR/solidity-contracts-eth-inida/issues"
+  },
+  "homepage": "https://github.com/YASHTHAKOR/solidity-contracts-eth-inida#readme"
+}
