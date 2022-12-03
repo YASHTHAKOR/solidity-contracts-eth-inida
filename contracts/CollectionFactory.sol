@@ -10,23 +10,23 @@ contract CollectionFactory {
     constructor () {
     }
 
-    function _cloneCollection(string memory _collectionName, uint _m, uint _n, address owner, address parent) internal returns (address) {
-        Collection newCollection = new Collection(_collectionName, _m, _n, owner, parent);
+    function _cloneCollection(string memory _collectionName, string memory _sym, uint _m, uint _n, address owner, address parent) internal returns (address) {
+        Collection newCollection = new Collection(_collectionName, _sym, _m, _n, owner, parent);
         userCollections[owner].push(address(newCollection));
         return address(newCollection);
     }
 
-    function createCollection(string memory _collectionName, uint _m, uint _n) external returns (address) {
-        address createdCollection = _cloneCollection(_collectionName, _m, _n, msg.sender, address(0));
-        emit CollectionCreated(createCollection, _collectionName, msg.sender);
+    function createCollection(string memory _collectionName, string memory _sym, uint _m, uint _n) external returns (address) {
+        address createdCollection = _cloneCollection(_collectionName, _sym, _m, _n, msg.sender, address(0));
+        emit CollectionCreated(createdCollection, _collectionName, msg.sender);
         return createdCollection;
     }
 
-    function forkCollection(string memory _collectionName, address parent) {
+    function forkCollection(string memory _collectionName, string memory _sym, address parent) external returns (address) {
         uint _m = Collection(parent).M();
         uint _n = Collection(parent).N();
-        address forkedCollection = _cloneCollection(_collectionName, _m, _n, msg.sender, parent);
-        emit CollectionForked(_collectionName, msg.sender, parent);
+        address forkedCollection = _cloneCollection(_collectionName, _sym, _m, _n, msg.sender, parent);
+        emit CollectionForked(forkedCollection, _collectionName, msg.sender, parent);
         return forkedCollection;
     }
 }
