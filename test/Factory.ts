@@ -21,14 +21,14 @@ describe('Collection Factory', function () {
         await cf.deployed();
     });
 
-    it.only('can create collection', async () => {
+    it('can create collection', async () => {
        const createCollectionTX = await cf.connect(address1).createCollection('Collection1', 'COL-1', 2, 2);
        const createCollectionReceipt = await createCollectionTX.wait();
 
        console.log('collection receipt: ', JSON.stringify(createCollectionReceipt));
     });
 
-    it.only('can clone collection', async () => {
+    it('can clone collection', async () => {
        const createCollectionTX = await cf.connect(address1).createCollection('Collection1', 'COL-1', 2, 2);
        const createCollectionReceipt = await createCollectionTX.wait();
 

@@ -3,6 +3,8 @@ import './Collection.sol';
 
 contract CollectionFactory {
     mapping(address => address[]) userCollections;
+    address[] public collections;
+    address[] public forks;
 
     event CollectionCreated(address Collection, string _collectionName, address Owner);
     event CollectionForked(address Collection, string _collectionName, address Owner, address parent);
@@ -18,6 +20,7 @@ contract CollectionFactory {
 
     function createCollection(string memory _collectionName, string memory _sym, uint _m, uint _n) external returns (address) {
         address createdCollection = _cloneCollection(_collectionName, _sym, _m, _n, msg.sender, address(0));
+        collections.push(createdCollection);
         emit CollectionCreated(createdCollection, _collectionName, msg.sender);
         return createdCollection;
     }
@@ -28,6 +31,7 @@ contract CollectionFactory {
         uint _m = Collection(parent).M();
         uint _n = Collection(parent).N();
         address forkedCollection = _cloneCollection(_collectionName, _sym, _m, _n, msg.sender, parent);
+        forks.push(forkedCollection);
         emit CollectionForked(forkedCollection, _collectionName, msg.sender, parent);
         return forkedCollection;
     }
