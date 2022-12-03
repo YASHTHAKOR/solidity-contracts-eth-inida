@@ -23,6 +23,8 @@ contract CollectionFactory {
     }
 
     function forkCollection(string memory _collectionName, string memory _sym, address parent) external returns (address) {
+        require(Collection(parent).minted(), 'Not allowed');
+
         uint _m = Collection(parent).M();
         uint _n = Collection(parent).N();
         address forkedCollection = _cloneCollection(_collectionName, _sym, _m, _n, msg.sender, parent);
