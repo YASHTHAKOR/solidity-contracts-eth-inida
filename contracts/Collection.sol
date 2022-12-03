@@ -11,6 +11,8 @@ contract Collection is ERC721 {
     address public Parent;
     bool public minted;
 
+    event Mint(uint256 tokenId);
+
     mapping(uint256 => bool) mintedIds;
 
     modifier onlyOwner() {
@@ -34,6 +36,12 @@ contract Collection is ERC721 {
         require(M * N > tokenId, "Invalid token");
         require(!mintedIds[tokenId], "already minted");
         _mint(msg.sender, tokenId);
+        mintedIds[tokenId] = true;
+        emit Mint(tokenId);
+    }
+
+    function complete() external onlyOwner isNotLocked{
+         minted = true;
     }
 
 }

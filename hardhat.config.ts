@@ -1,5 +1,6 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "@nomiclabs/hardhat-etherscan";
 import "@typechain/hardhat";
 import * as dotenv from "dotenv";
 
@@ -17,7 +18,10 @@ const config: HardhatUserConfig = {
       url: process.env.BSC_URL || "",
       accounts: [process.env.BSC_KEY]
     }
-  }
+  },
+  etherscan: {
+    apiKey: process.env.POLYGONSCAN_API_KEY,
+  },
 };
 
 export default config;
