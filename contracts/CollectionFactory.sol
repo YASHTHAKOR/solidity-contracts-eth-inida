@@ -12,6 +12,14 @@ contract CollectionFactory {
     constructor () {
     }
 
+    function userCollectionCount(address user) public view returns (uint) {
+        return userCollections[user].length;
+    }
+
+    function getUserCollections(address user) public view returns (address[] memory) {
+        return userCollections[user];
+    }
+
     function _cloneCollection(string memory _collectionName, string memory _sym, uint _m, uint _n, address owner, address parent) internal returns (address) {
         Collection newCollection = new Collection(_collectionName, _sym, _m, _n, owner, parent);
         userCollections[owner].push(address(newCollection));
