@@ -2,7 +2,7 @@ pragma solidity ^0.8.17;
 import './Collection.sol';
 
 contract CollectionFactory {
-    mapping(address => address[]) userCollections;
+    mapping(address => address[]) public userCollections;
     address[] public collections;
     address[] public forks;
 
