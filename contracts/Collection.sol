@@ -12,6 +12,8 @@ contract Collection is ERC721 {
     bool public minted;
     string public baseURI;
 
+    using Strings for uint256;
+
     event Mint(uint256 tokenId);
 
     mapping(uint256 => bool) mintedIds;
@@ -48,6 +50,13 @@ contract Collection is ERC721 {
     function setBaseURI(string memory _baseURI) external onlyOwner {
         require(bytes(baseURI).length == 0, "uri already set");
         baseURI = _baseURI;
+    }
+
+    function getURL(uint256 tokenId) external view returns (string memory){
+        if(mintedIds[tokenId]) {
+            return string(abi.encodePacked(baseURI, tokenId.toString()));
+        }
+        return Collection(Parent).getURL(tokenId);
     }
 
 }
